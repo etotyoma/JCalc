@@ -5,6 +5,7 @@ module net.etotyoma.jcalc {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
+    requires java.logging;
 
     opens net.etotyoma.jcalc to javafx.fxml;
     exports net.etotyoma.jcalc;

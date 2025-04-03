@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="352.0" prefWidth="250.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.etotyoma.jcalc.controller.JCalcController">
+<AnchorPane prefHeight="352.0" prefWidth="250.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.etotyoma.jcalc.controller.CalculatorController">
    <children>
       <GridPane alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="250.0" style="-fx-background-color: #2C3639;">
         <columnConstraints>

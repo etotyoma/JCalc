@@ -15,6 +15,9 @@ public class JCalc extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+
+        stage.setOnCloseRequest(windowEvent ->
+                CalculatorLogger.log("Calculator stopped", CalculatorLogger.LogLevel.INFO));
     }
 
     public static void main(String[] args) {

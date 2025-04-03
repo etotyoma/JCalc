@@ -4,8 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import net.etotyoma.jcalc.core.CalculatorLogger;
 
-public class JCalcController {
+public class CalculatorController {
 
     private double num1;
     private double num2;
@@ -48,6 +49,10 @@ public class JCalcController {
             if (!operator.isEmpty()) {
                 num2 = Double.parseDouble(output.getText());
                 String result = calculate(num1, num2, operator);
+
+                if (!result.equals("Error"))
+                    CalculatorLogger.log(String.format("%s %s %s = %s", num1, operator, num2, result), CalculatorLogger.LogLevel.INFO);
+
                 output.setText(result);
                 start = true;
                 num1 = Double.parseDouble(result);
@@ -66,7 +71,12 @@ public class JCalcController {
                 start = true;
             }
             num2 = Double.parseDouble(output.getText());
-            output.setText(calculate(num1, num2, operator));
+            String result = calculate(num1, num2, operator);
+
+            if (!result.equals("Error"))
+                CalculatorLogger.log(String.format("%s %s %s = %s", num1, operator, num2, result), CalculatorLogger.LogLevel.INFO);
+
+            output.setText(result);
             start = true;
             operator = "";
         }
@@ -119,6 +129,7 @@ public class JCalcController {
     @FXML
     protected void onClearButtonClick() {
         if (clearButton.getText().equals("AC")) {
+            CalculatorLogger.log("Calculator cleared (AC)", CalculatorLogger.LogLevel.INFO);
             output.setText("0");
             start = true;
             operator = "";
@@ -141,7 +152,13 @@ public class JCalcController {
             case "+" -> result = num1 + num2;
             case "-" -> result = num1 - num2;
             case "X" -> result = num1 * num2;
-            case "÷" -> result = num1 / num2;
+            case "÷" -> {
+                if (num2 == 0) {
+                    CalculatorLogger.log("Division by zero! (" + num1 + " ÷ 0)", CalculatorLogger.LogLevel.ERROR);
+                    return "Error";
+                }
+                result = num1 / num2;
+            }
         }
 
         if (result % 1 == 0)

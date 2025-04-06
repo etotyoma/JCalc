@@ -12,7 +12,6 @@ public class CalculatorController {
     private double num1;
     private double num2;
     private boolean start = true;
-    private boolean negativeToggle = false;
     private boolean hasActiveCalculation = false;
     private Button activeOperatorButton = null;
     private String operator = "";
@@ -87,15 +86,15 @@ public class CalculatorController {
     @FXML
     protected void onActionButtonClick(MouseEvent event) {
         String value = ((Button)event.getSource()).getText();
-        String currentValue = output.getText();
+        double currentValue = Double.parseDouble(output.getText());
 
-        double percentValue;
         if (value.equals("%")) {
+            double percentValue;
             if (operator.isEmpty()) {
-                percentValue = Double.parseDouble(currentValue) / 100;
+                percentValue = currentValue / 100;
                 output.setText(String.valueOf(percentValue));
             } else {
-                num2 = Double.parseDouble(currentValue);
+                num2 = currentValue;
                 percentValue = num1 * (num2 / 100);
                 output.setText(String.valueOf(percentValue));
             }
@@ -110,20 +109,11 @@ public class CalculatorController {
             return;
         }
 
-        if (!(output.getText().contains("-"))) {
-            if (value.equals("±")) {
-                if (!negativeToggle) {
-                    output.setText("-" + output.getText());
-                    negativeToggle = true;
-                }
-            }
-        } else {
-            if (value.equals("±")) {
-                if (negativeToggle) {
-                    output.setText(output.getText().replace("-", ""));
-                    negativeToggle = false;
-                }
-            }
+        if (value.equals("±")) {
+            if (currentValue % 1 == 0)
+                output.setText(String.valueOf((int) -currentValue));
+            else
+                output.setText(String.valueOf(-currentValue));
         }
     }
 

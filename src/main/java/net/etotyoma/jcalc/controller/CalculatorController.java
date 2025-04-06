@@ -88,33 +88,32 @@ public class CalculatorController {
         String value = ((Button)event.getSource()).getText();
         double currentValue = Double.parseDouble(output.getText());
 
-        if (value.equals("%")) {
-            double percentValue;
-            if (operator.isEmpty()) {
-                percentValue = currentValue / 100;
-                output.setText(String.valueOf(percentValue));
-            } else {
-                num2 = currentValue;
-                percentValue = num1 * (num2 / 100);
-                output.setText(String.valueOf(percentValue));
+        switch (value) {
+            case "%" -> {
+                double percentValue;
+                if (operator.isEmpty()) {
+                    percentValue = currentValue / 100;
+                    output.setText(String.valueOf(percentValue));
+                } else {
+                    num2 = currentValue;
+                    percentValue = num1 * (num2 / 100);
+                    output.setText(String.valueOf(percentValue));
+                }
             }
-            return;
+            case "." -> {
+                if (output.getText().contains("."))
+                    return;
+                else
+                    output.setText(output.getText() + ".");
+            }
+            case "±" -> {
+                if (currentValue % 1 == 0)
+                    output.setText(String.valueOf((int) -currentValue));
+                else
+                    output.setText(String.valueOf(-currentValue));
+            }
         }
 
-        if (value.equals(".")) {
-            if (output.getText().contains("."))
-                return;
-            else
-                output.setText(output.getText() + ".");
-            return;
-        }
-
-        if (value.equals("±")) {
-            if (currentValue % 1 == 0)
-                output.setText(String.valueOf((int) -currentValue));
-            else
-                output.setText(String.valueOf(-currentValue));
-        }
     }
 
     @FXML

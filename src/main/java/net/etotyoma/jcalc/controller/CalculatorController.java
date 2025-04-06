@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import net.etotyoma.jcalc.core.CalculatorLogic;
 import net.etotyoma.jcalc.core.CalculatorLogger;
 
 public class CalculatorController {
@@ -48,7 +49,7 @@ public class CalculatorController {
         if (!value.equals("=")) {
             if (!operator.isEmpty()) {
                 num2 = Double.parseDouble(output.getText());
-                String result = calculate(num1, num2, operator);
+                String result = CalculatorLogic.calculate(num1, num2, operator);
 
                 if (!result.equals("Error"))
                     CalculatorLogger.log(String.format("%s %s %s = %s", num1, operator, num2, result), CalculatorLogger.LogLevel.INFO);
@@ -71,7 +72,7 @@ public class CalculatorController {
                 start = true;
             }
             num2 = Double.parseDouble(output.getText());
-            String result = calculate(num1, num2, operator);
+            String result = CalculatorLogic.calculate(num1, num2, operator);
 
             if (!result.equals("Error"))
                 CalculatorLogger.log(String.format("%s %s %s = %s", num1, operator, num2, result), CalculatorLogger.LogLevel.INFO);
@@ -143,28 +144,6 @@ public class CalculatorController {
             start = true;
         }
         updateClearButton();
-    }
-
-    private String calculate(double num1, double num2, String op) {
-        double result = 0;
-
-        switch (op) {
-            case "+" -> result = num1 + num2;
-            case "-" -> result = num1 - num2;
-            case "X" -> result = num1 * num2;
-            case "÷" -> {
-                if (num2 == 0) {
-                    CalculatorLogger.log("Division by zero! (" + num1 + " ÷ 0)", CalculatorLogger.LogLevel.ERROR);
-                    return "Error";
-                }
-                result = num1 / num2;
-            }
-        }
-
-        if (result % 1 == 0)
-            return String.valueOf((int) result);
-
-        return String.valueOf(result);
     }
 
     private void updateClearButton() {

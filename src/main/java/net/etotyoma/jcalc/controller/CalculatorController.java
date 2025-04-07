@@ -57,7 +57,7 @@ public class CalculatorController {
                 start = true;
                 num1 = Double.parseDouble(result);
             }
-            clickedButton.setStyle("-fx-background-color: #ffffff");
+            clickedButton.setStyle("-fx-background-color: derive(#DCD7C9, 40%)");
             activeOperatorButton = clickedButton;
 
             operator = value;
@@ -101,9 +101,7 @@ public class CalculatorController {
                 }
             }
             case "." -> {
-                if (output.getText().contains("."))
-                    return;
-                else
+                if (!output.getText().contains("."))
                     output.setText(output.getText() + ".");
             }
             case "±" -> {
@@ -113,7 +111,6 @@ public class CalculatorController {
                     output.setText(String.valueOf(-currentValue));
             }
         }
-
     }
 
     @FXML

@@ -1,7 +1,6 @@
 package net.etotyoma.jcalc.core;
 
 public class CalculatorLogic {
-
     public static String calculate(double num1, double num2, String op) {
         double result = 0;
 
@@ -23,6 +22,4 @@ public class CalculatorLogic {
 
         return String.valueOf(result);
     }
-
-
 }

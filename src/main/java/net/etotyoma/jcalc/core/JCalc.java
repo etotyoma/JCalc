@@ -9,7 +9,7 @@ import net.etotyoma.jcalc.Launcher;
 public class JCalc extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("calc-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("ui/basic-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("JCalc");
         stage.setResizable(false);

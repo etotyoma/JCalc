@@ -1,0 +1,45 @@
+* {
+    -fx-background-color: #2C3639;
+    -fx-font-family: "Calibri Light";
+}
+
+#outputLabel {
+    -fx-font-size: 48px;
+    -fx-padding: 0 10px 0 0;
+    -fx-text-fill: WHITE;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-max-width: Infinity;
+}
+
+.button {
+    -fx-font-size: 18px;
+    -fx-text-fill: WHITE;
+    -fx-alignment: CENTER;
+    -fx-contentDisplay: CENTER;
+    -fx-background-insets: 3px;
+    -fx-max-width: Infinity;
+    -fx-max-height: Infinity;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
+    -fx-transition: -fx-background-color 0.5s, -fx-effect 0.5s;
+}
+
+.numpadButton {
+    -fx-background-color: #3F4E4F;
+}
+
+.numpadButton:pressed {
+    -fx-background-color: derive(#3F4E4F, 20%);
+}
+
+.operatorButton {
+    -fx-background-color: #DCD7C9;
+    -fx-text-fill: #A27B5C;
+}
+
+.actionButton {
+    -fx-background-color: #A27B5C;
+}
+
+.actionButton:pressed {
+    -fx-background-color: derive(#A27B5C, 20%);
+}
